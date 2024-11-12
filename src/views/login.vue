@@ -252,7 +252,17 @@ export default {
 
                     const fileName = data.list[i].downPath;
                     if (fileName != null && fileName !== '') {
-                        a.href = encodeURI('/downController/downloadResource?fileName=${fileName}');
+                        axios.get('/downController/downloadResource', {
+                            params: {
+                                fileName: fileName
+                            },
+                            responseType: 'blob'
+                        }).then(response => {
+                            const blob = new Blob([response.data]);
+                            const url = window.URL.createObjectURL(blob);
+                            a.href = url;
+                            a.download = fileName;
+                        })
                     }
 
                     const li = document.createElement('li');
