@@ -41,7 +41,7 @@
                                     <input id="remember-me" type="checkbox">
                                     <label for="remember-me">记住密码</label>
                                 </div>
-                                <span class="am-fr detail-p" style="color: #999;">忘记密码请联系管理员</span>
+                                <span class="am-fr detail-p" style="color: #999;position: relative;top: -30px;">忘记密码请联系管理员</span>
                             </form>
                         </div>
                     </section>
@@ -88,7 +88,7 @@
                                 由 <a href="https://github.com/XiaoSone" title="XiaoSon" target="_blank">XiaoSon</a>
                                 提供技术支持
                             </p>
-                            <p>copyright &copy; 2018-2028, All Rights Reserved.</p>
+                            <p>copyright &copy; 2018-2024, All Rights Reserved.</p>
                         </div>
                     </footer>
                 </div>
@@ -164,7 +164,7 @@ export default {
             }).then(res=> {
                 if (res.data === 'randStrError') {
                     console.log('验证码错误');
-                } else if (res.data === 'account or passwordError') {
+                } else if (res.data === '用户名或密码错误') {
                     console.log('账号或密码错误');
                 } else {
                     console.log(res.data);
@@ -207,10 +207,7 @@ export default {
                             }
                         }).then(response => {
                             document.getElementById('model_body').innerHTML = response.data.informBody;
-                            const modal = document.getElementById('inform-modal');
-                            console.log(modal);
                         });
-                        // 修改为使用 jQuery 显示模态框
                         // eslint-disable-next-line no-undef
                         $('#inform-modal').modal('open');
                         return false;
@@ -251,6 +248,7 @@ export default {
                     a.appendChild(spanPath);
 
                     const fileName = data.list[i].downPath;
+                    console.log(fileName);
                     if (fileName != null && fileName !== '') {
                         axios.get('/downController/downloadResource', {
                             params: {

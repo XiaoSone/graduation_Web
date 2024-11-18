@@ -13,13 +13,5 @@ module.exports = defineConfig({
             },
         },
         webSocketServer: false
-    },
-    // configureWebpack: {
-    //     plugins: [
-    //         new webpack.ProvidePlugin({
-    //             $: 'jquery',
-    //             jQuery: 'jquery',
-    //         }),
-    //     ],
-    // },
+    }
 })
